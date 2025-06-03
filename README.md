@@ -1,19 +1,20 @@
 # raritan-compare-roles - a utilty to compare the role definitions between two Raritan intelligent PDUs and report differences
 
-The Python 3 program `compare-roles.py` gets the role definitions on all the roles defined on two
-Raritan intelligent PDUs and compares them. Differences are reported.
+The Python 3 program `compare-roles.py` gets the role definitions of all the roles defined on two
+Raritan intelligent PDUs and compares them. Differences are then reported. One difference per line of output.
 
-## Why is is this useful?
+## Why is this useful?
 
-When custom roles are defined on a Raritan PDU is is usual for the same roles to be defined on groups of similar PDUs "en mass".
+When custom roles are defined on a Raritan PDU it is usual for the same roles to be defined on groups of similar PDUs "en mass".
 
-This utility program can be used to ensure the roles are defined consistently in large sites where the number of deployed PDUs has scaled.
+This utility program can be used to ensure the roles are defined consistently in large sites where the number of deployed PDUs has scaled
+into the hundreds or even thousands of units.
 
 ## Pre-requisites
 
 You will need the following:
 
-+ python3 installed - tested on version 3.12.3 but anything from 3.6.x onwards would probably be ok
++ python3 installed - tested on Python version 3.12.3 but anything from 3.6.x onwards would probably be ok
 + the Raritan PDU JSON-RPC SDK (downloadable from www.raritan.com)
 + PYTHONPATH defined to include the location of the Python JSON-RPC SDK bindings directory
 
@@ -37,12 +38,14 @@ Username .....: admin
 Password .....: Passw0rd!
 ```
 
-`NOTE:` the password `Passw0rd!` is NOT a password used on any devices. It is simply a "place holder" for this README documentation. Also do NOT be tempted to use it on any devices/accounts!!!
+`NOTE:` the password `Passw0rd!` is NOT a password used on any of MY
+devices! It is simply a "place holder" for this README documentation. Also
+do NOT be tempted to use it on any of YOUR devices/accounts!
 
 With these details we can run the `compare_roles.py` utility program as follows:
 
 ```
-python3 ./compare-roles.py  --host1 10.7.0.11 --user1 admin --pass1 raritan --host2 10.7.0.12 --user2 admin --pass2 raritan
+python3 ./compare-roles.py  --host1 10.7.0.11 --user1 admin --pass1 'Passw0rd!' --host2 10.7.0.12 --user2 admin --pass2 'Passw0rd!'
 ```
 
 Example output:
@@ -90,7 +93,9 @@ Note the special syntax for the password arguments: the environment variable ins
 ## Test coverage
 
 The `compare_roles.py` utility program has currently not been exhaustively tested. In particular the author has not been able to test the
-logic that compares, for example, a role that defines the "Switch Outlet" priviledge. If you have two switched PDUs please try the following:
+logic that compares, for example, a role that defines the "Switch Outlet" priviledge.
+
+If you have two switched PDUs that you can safely experiment with could you please try the following:
 
 ```
 create a role called "outlet" with description "outlet role" on two PDUs
