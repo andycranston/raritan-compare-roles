@@ -3,6 +3,12 @@
 The Python 3 program `compare-roles.py` gets the role definitions of all the roles defined on two
 Raritan intelligent PDUs and compares them. Differences are then reported. One difference per line of output.
 
+## ATTENTION: Development status is "test"
+
+This code is in a status of "test". While it poses negligble risk (because it doesn't change any settings)
+I would advise, at this point in time, to use on PDUs in a test/lab environment. See the section "Test coverage"
+below for more details.
+
 ## Why is this useful?
 
 When custom roles are defined on a Raritan PDU it is usual for the same roles to be defined on groups of similar PDUs "en mass".
@@ -89,6 +95,14 @@ python3 ./compare-roles.py  --host1 10.7.0.11 --user1 admin --pass1 [PW1] --host
 ```
 
 Note the special syntax for the password arguments: the environment variable inside the [ and ] brackets.
+
+## The --skipoper optional command line argument
+
+The `--skipoper` (which stands for `skip` `oper`ator) will, when specified on the command line, will ignore the built-role
+called "Operator". The "Operator" role has the priviledge "switchOutlet" set on PDUs which have switchable outlets but is
+absent on PDUs which are not switchable. This will cause a difference output. For cases when only the roles which have been
+added by the user should be compared this option could be useful.
+
 
 ## Test coverage
 
